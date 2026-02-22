@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Safe Ad Reward</title>
+
+<!-- Monetag SDK -->
+<script src='//libtl.com/sdk.js' data-zone='10640617' data-sdk='show_10640617'></script>
+<style>
+body{
+  background:#111;
+  color:white;
+  text-align:center;
+  font-family:sans-serif;
+  padding-top:100px;
+}
+
+button{
+  padding:15px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#00c853;
+  color:white;
+  cursor:pointer;
+}
+
+h2{margin-bottom:20px;}
+</style>
+</head>
+
+<body>
+
+<h2>Watch Ad & Earn Points</h2>
+
+<p>Watched Ads: <span id="count">0</span></p>
+
+<button onclick="watchAd()">Watch Ad</button>
+
+<script>
+
+let ads = 0;
+
+function watchAd(){
+
+  if(typeof show_10640617 === 'function'){
+
+    show_10640617().then(() => {
+
+      // ONLY after real ad completed
+      ads++;
+      document.getElementById("count").textContent = ads;
+
+      alert("Ad completed! Reward added");
+
+    }).catch(() => {
+
+      alert("Ad not available. Try later.");
+
+    });
+
+  } else {
+    alert("Ad SDK not loaded");
+  }
+
+}
+
+</script>
+
+</body>
+</html>
